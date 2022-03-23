@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>Tools-WSDL-Java</artifactId>
+	<groupId>com.mab</groupId>
+	<version>1.0.0</version>
+
+	<name>Tools-WSDL-Java</name>
+	<description>Tools for Generate WSDL / Web Service / SOAP to Java Class</description>
+
+	<properties>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.xml.ws</groupId>
+			<artifactId>jaxws-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- If From File -->
+					<wsdlDirectory>${project.basedir}/src/main/resources</wsdlDirectory>
+					<wsdlFiles>
+						<wsdlFile>countries.wsdl</wsdlFile>
+					</wsdlFiles>
+
+					<!-- If From URL -->
+					<!-- <wsdlUrls>
+						<wsdlUrl>http://localhost:8888/ws/country?wsdl</wsdlUrl>
+					</wsdlUrls> -->
+
+					<sourceDestDir>${project.basedir}/src/main/java</sourceDestDir>
+					<packageName>com.mab.wsdl</packageName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
